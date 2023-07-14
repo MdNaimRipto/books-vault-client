@@ -1,0 +1,23 @@
+.customFont {
+  font-family: 'Anton', sans-serif;
+  font-size: 18px;
+}
+
+.menuHeight {
+  height: 100px;
+  line-height: 100px;
+}
+
+@media screen and (max-width: 576px) {
+  .menuHeight {
+    height: 50px;
+    line-height: 50px;
+  }
+}
+
+@media screen and (min-width: 577px) and (max-width: 992px) {
+  .menuHeight {
+    height: 75px;
+    line-height: 75px;
+  }
+}
