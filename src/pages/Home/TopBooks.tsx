@@ -1,0 +1,25 @@
+import { useGetTopBooksQuery } from '../../redux/features/books/booksApi';
+import { IBooks } from '../../types/BookType';
+import BookCard from '../../components/BookCard';
+
+const TopBooks = () => {
+  const { data, isLoading } = useGetTopBooksQuery(undefined);
+
+  if (isLoading) {
+    return <h2>Loading</h2>;
+  } else {
+    const topBooks = data.data;
+    return (
+      <div>
+        <h2 className="text-4xl my-12 font-serif">Top Ten Best Seller Books</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
+          {topBooks.map((book: IBooks) => (
+            <BookCard book={book} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+};
+
+export default TopBooks;
