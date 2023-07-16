@@ -4,6 +4,7 @@ export interface IBooks {
   author: string;
   genre: string;
   publicationDate: string;
+  publicationYear: string;
   description: string;
   price: number;
   totalSale: number;
@@ -31,4 +32,10 @@ export interface IBookCard {
 
 export interface IBookCardProps {
   book: IBookCard;
+}
+
+export interface IBooksFilterParams {
+  searchTerm?: string;
+  selectedYear?: string;
+  selectedGenre?: string;
 }

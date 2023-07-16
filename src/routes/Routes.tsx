@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../layouts/MainLayout';
 import HomeMain from '../pages/Home/HomeMain';
-import AllBooks from '../pages/Books/AllBooks';
 import Login from '../pages/LoginRegister/Login';
 import Register from '../pages/LoginRegister/Register';
 import BooksDetail from '../pages/Books/BooksDetail';
@@ -31,13 +30,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/',
+    path: '/all-books',
     element: <AllBooksLayout />,
-    children: [
-      {
-        path: '/all-books',
-        element: <AllBooks />,
-      },
-    ],
   },
 ]);

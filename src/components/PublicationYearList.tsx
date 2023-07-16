@@ -1,22 +1,25 @@
 import { useState, useEffect } from 'react';
 import { useGetAllBooksQuery } from '../redux/features/books/booksApi';
 import { IBooks } from '../types/BookTypes';
+import { IPublicationYearItems } from '../types/CommonTypes';
 
-const PublicationYearSelect = () => {
-  const [publicationYears, setPublicationYears] = useState<number[]>([]);
-  const [selectedYear, setSelectedYear] = useState<string>('');
+const PublicationYearSelect: React.FC<IPublicationYearItems> = ({
+  selectedYear,
+  setSelectedYear,
+}) => {
+  const [publicationYears, setPublicationYears] = useState<string[]>([]);
 
-  const { data: yearsCollection, isLoading } = useGetAllBooksQuery(undefined);
+  const { data: yearsCollection, isLoading } = useGetAllBooksQuery({});
 
   useEffect(() => {
     if (yearsCollection?.data) {
-      const years = yearsCollection.data.map((item: IBooks) => {
-        const date = new Date(item.publicationDate);
-        return date.getFullYear();
-      });
-      const uniqueYears = [...new Set(years)];
-      uniqueYears.sort((a, b) => (a as number) - (b as number));
-      setPublicationYears(uniqueYears as number[]);
+      const uniqueYears = [
+        ...new Set(
+          yearsCollection.data.map((book: IBooks) => book.publicationYear)
+        ),
+      ];
+      uniqueYears.sort();
+      setPublicationYears(uniqueYears as string[]);
     }
   }, [yearsCollection?.data]);
 
@@ -34,7 +37,10 @@ const PublicationYearSelect = () => {
           value={selectedYear}
           onChange={handleYearChange}
         >
-          <option value="">-- Select Year --</option>
+          <option value="" disabled>
+            -- Select Year --
+          </option>
+          <option value="">None</option>
           {publicationYears.map((year) => (
             <option key={year} value={year.toString()}>
               {year}

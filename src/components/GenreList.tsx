@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useGetAllBooksQuery } from '../redux/features/books/booksApi';
 import { IBooks } from '../types/BookTypes';
+import { IGenreListItems } from '../types/CommonTypes';
 
-const GenreList = () => {
+const GenreList: React.FC<IGenreListItems> = ({
+  selectedGenre,
+  setSelectedGenre,
+}) => {
   const [genres, setGenres] = useState<string[]>([]);
-  const [selectedGenre, setSelectedGenre] = useState<string>('');
 
-  const { data: booksCollection, isLoading } = useGetAllBooksQuery(undefined);
+  const { data: booksCollection, isLoading } = useGetAllBooksQuery({});
 
   useEffect(() => {
     if (booksCollection?.data) {
@@ -18,13 +21,13 @@ const GenreList = () => {
     }
   }, [booksCollection?.data]);
 
-  const handleGenreChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedGenre(event.target.value);
-  };
-
   if (isLoading) {
     return <h2>Loading</h2>;
   } else {
+    const handleGenreChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setSelectedGenre(event.target.value);
+    };
+
     return (
       <div className="w-full border border-gray-300 p-2 rounded mb-3">
         <select
@@ -32,7 +35,10 @@ const GenreList = () => {
           value={selectedGenre}
           onChange={handleGenreChange}
         >
-          <option value="">-- Select Genre --</option>
+          <option value="" disabled>
+            -- Select Genre --
+          </option>
+          <option value="">None</option>
           {genres.map((genre) => (
             <option key={genre} value={genre}>
               {genre}

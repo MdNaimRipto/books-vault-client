@@ -3,8 +3,25 @@ import BookCard from '../../components/BookCard';
 import { useGetAllBooksQuery } from '../../redux/features/books/booksApi';
 import { IBooks } from '../../types/BookTypes';
 
-const AllBooks = () => {
-  const { data, isLoading } = useGetAllBooksQuery(undefined);
+interface IYearGenreType {
+  searchTerm: string;
+  selectedYear: string;
+  selectedGenre: string;
+}
+const AllBooks: React.FC<IYearGenreType> = ({
+  searchTerm,
+  selectedYear,
+  selectedGenre,
+}) => {
+  const { data, isLoading, isError } = useGetAllBooksQuery({
+    searchTerm,
+    selectedYear,
+    selectedGenre,
+  });
+
+  if (isError) {
+    return <p>No Books Found</p>;
+  }
   if (isLoading) {
     return <h2>Loading</h2>;
   } else {
