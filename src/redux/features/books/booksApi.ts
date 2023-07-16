@@ -1,7 +1,7 @@
 import { IBooksFilterParams } from '../../../types/BookTypes';
-import { apiBooks } from '../../api/booksApiSlice';
+import { api } from '../../api/apiSlice';
 
-const booksApi = apiBooks.injectEndpoints({
+const booksApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getAllBooks: builder.query({
       query: (data: IBooksFilterParams) => {
@@ -15,15 +15,15 @@ const booksApi = apiBooks.injectEndpoints({
         if (data.selectedGenre) {
           queryParameters.append('genre', data.selectedGenre);
         }
-        return `/getAllBooks?${queryParameters.toString()}`;
+        return `/books/getAllBooks?${queryParameters.toString()}`;
       },
     }),
     getTopBooks: builder.query({
-      query: () => '/getTopBooks',
+      query: () => '/books/getTopBooks',
     }),
     getBooksByID: builder.query({
       query: (id) => ({
-        url: `/getBooksByID/${id}`,
+        url: `/books/getBooksByID/${id}`,
       }),
     }),
   }),
