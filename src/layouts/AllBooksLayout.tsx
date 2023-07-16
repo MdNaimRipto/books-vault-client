@@ -8,7 +8,7 @@ const AllBooksLayout = () => {
   return (
     <div className="container mx-auto px-0 md:px-4 lg:px-8 xl:px-4">
       <Navbar />
-      <div className="grid grid-cols-8 gap-6 px-4 my-12">
+      <div className="grid grid-cols-8 gap-6 px-5 my-12">
         <nav className="col-span-2">
           <input
             placeholder="Search Books"
