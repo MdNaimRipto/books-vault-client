@@ -1,5 +1,5 @@
 import { useGetTopBooksQuery } from '../../redux/features/books/booksApi';
-import { IBooks } from '../../types/BookType';
+import { IBooks } from '../../types/BookTypes';
 import BookCard from '../../components/BookCard';
 
 const TopBooks = () => {
@@ -14,7 +14,7 @@ const TopBooks = () => {
         <h2 className="text-4xl my-12 font-serif">Top Ten Best Seller Books</h2>
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
           {topBooks.map((book: IBooks) => (
-            <BookCard book={book} />
+            <BookCard book={book} key={book._id} />
           ))}
         </div>
       </div>

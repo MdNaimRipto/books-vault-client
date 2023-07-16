@@ -15,7 +15,7 @@ const Banner = () => {
           of books.
         </p>
         <Link to="/all-books">
-          <Button title="Check Books Now" px={5} py={3} />
+          <Button title="Check Books Now" />
         </Link>
       </div>
       <div className="w-[40%]">

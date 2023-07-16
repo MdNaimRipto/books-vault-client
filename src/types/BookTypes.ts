@@ -9,7 +9,6 @@ export interface IBooks {
   totalSale: number;
   inStock: boolean;
   rating: number;
-  allRating: [number];
   quantity: number;
   reviews: [
     {
@@ -19,4 +18,17 @@ export interface IBooks {
   ];
   img: string;
   sellerID: string;
+}
+
+export interface IBookCard {
+  _id: string;
+  genre: string;
+  img: string;
+  title: string;
+  publicationDate: string;
+  author: string;
+}
+
+export interface IBookCardProps {
+  book: IBookCard;
 }

@@ -1,31 +1,16 @@
 import { Link } from 'react-router-dom';
-interface IBook {
-  _id: string;
-  genre: string;
-  img: string;
-  title: string;
-  publicationDate: string;
-  author: string;
-}
-
-interface IBookCardProps {
-  book: IBook;
-}
+import { IBookCardProps } from '../types/BookTypes';
 
 const BookCard = ({ book }: IBookCardProps) => {
   return (
-    <Link
-      key={book._id}
-      className="bg-gray-200 rounded"
-      to={`/getBookByID/${book._id}`}
-    >
+    <Link className="bg-gray-200 rounded" to={`/books-details/${book._id}`}>
       <div className="relative w-[96%] mx-auto">
-        <span className="absolute top-0 right-0 px-2 py-1 text-xs rounded-bl-md text-white bg-[#5870f9]">
+        <span className="absolute top-0 right-0 px-2 py-1 text-xs rounded-bl-md rounded-tr text-white bg-[#5870f9]">
           {book.genre}
         </span>
         <img
           src={book.img}
-          className="mt-1"
+          className="mt-1 rounded"
           style={{ height: undefined, aspectRatio: 0.7 }}
           alt="Top Seller Books"
         />

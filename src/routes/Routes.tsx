@@ -4,6 +4,8 @@ import HomeMain from '../pages/Home/HomeMain';
 import AllBooks from '../pages/Books/AllBooks';
 import Login from '../pages/LoginRegister/Login';
 import Register from '../pages/LoginRegister/Register';
+import BooksDetail from '../pages/Books/BooksDetail';
+import AllBooksLayout from '../layouts/AllBooksLayout';
 
 export const router = createBrowserRouter([
   {
@@ -15,8 +17,8 @@ export const router = createBrowserRouter([
         element: <HomeMain />,
       },
       {
-        path: '/all-books',
-        element: <AllBooks />,
+        path: '/books-details/:id',
+        element: <BooksDetail />,
       },
       {
         path: '/sign-in',
@@ -25,6 +27,16 @@ export const router = createBrowserRouter([
       {
         path: '/sign-up',
         element: <Register />,
+      },
+    ],
+  },
+  {
+    path: '/',
+    element: <AllBooksLayout />,
+    children: [
+      {
+        path: '/all-books',
+        element: <AllBooks />,
       },
     ],
   },

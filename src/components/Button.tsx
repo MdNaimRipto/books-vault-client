@@ -1,13 +1,10 @@
-interface ITitle {
-  title: string;
-  py: number;
-  px: number;
-}
+import { ICommonBtn } from '../types/CommonTypes';
 
-const Button: React.FC<ITitle> = ({ title, py, px }) => {
+const Button = ({ title }: ICommonBtn) => {
+  // console.log(title, px, py);
   return (
     <button
-      className={`py-${py} px-${px} bg-[#5870f9] text-white rounded font-semibold font-serif`}
+      className={`py-3 px-5 bg-[#5870f9] text-white rounded font-semibold font-serif`}
     >
       {title}
     </button>
