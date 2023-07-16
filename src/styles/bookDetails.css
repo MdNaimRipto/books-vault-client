@@ -1,0 +1,14 @@
+.selectedBtn {
+  color: white;
+  background-color: #5870f9;
+  padding: 6px 8px;
+  font-family: serif;
+  font-size: 18px;
+  border-radius: 4px;
+}
+.unselectedBtn {
+  color: #000;
+  font-family: serif;
+  font-size: 16px;
+  transition: 0.3s;
+}

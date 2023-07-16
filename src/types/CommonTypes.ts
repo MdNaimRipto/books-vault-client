@@ -15,3 +15,8 @@ export interface IPublicationYearItems {
   selectedYear: string;
   setSelectedYear: (genre: string) => void;
 }
+
+export type IReview = {
+  reviewerName: string;
+  review: string;
+};
