@@ -18,8 +18,8 @@ const BookCard = ({ book }: IBookCardProps) => {
       <div className="px-2 pt-2">
         <div className="flex items-center justify-between mt-1 mb-2">
           <h6 className="font-serif text-base font-medium">
-            {book.title.length > 18
-              ? `${book.title.slice(0, 15)}...`
+            {book.title.length > 12
+              ? `${book.title.slice(0, 12)}...`
               : book.title}
           </h6>
           <p className="text-xs font-serif font-semibold text-green-600">

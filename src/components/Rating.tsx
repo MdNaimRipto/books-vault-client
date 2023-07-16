@@ -30,7 +30,7 @@ const Rating = ({ rating }: IRating) => {
   return (
     <div className="text-[#5870f9] flex items-center gap-[2px]">
       {stars}
-      <p className="bg-[#5870f9] text-white py-1 px-[5px] text-sm rounded-full font-sans">
+      <p className="bg-[#5870f9] text-white py-1 px-[5px] text-sm rounded-full font-sans ml-1">
         {ratingDisplay}
       </p>
     </div>
