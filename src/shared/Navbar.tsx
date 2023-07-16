@@ -1,12 +1,31 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../assets/Books Vault.png';
 import '../styles/navbar.css';
 import { FaBars } from 'react-icons/fa';
 import { GrClose } from 'react-icons/gr';
+import Cookies from 'js-cookie';
+import { AuthContext } from '../Context/UserContext';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
+
+  const authContextValue = useContext(AuthContext);
+
+  if (!authContextValue) {
+    // Handle the case when the context value is null
+    throw new Error('AuthContext value is not available');
+  }
+
+  const { user, setUser } = authContextValue;
+
+  const handleLogout = () => {
+    // Perform logout actions
+    Cookies.remove('userData');
+    setUser(null);
+    toast.success('Logout Successful');
+  };
 
   const activeStyle = {
     color: '#5870f9',
@@ -32,24 +51,37 @@ const Navbar = () => {
           ALL BOOKS
         </NavLink>
       </li>
-      <li className="menuHeight">
-        <NavLink
-          to="/sign-in"
-          className="customFont menuHeight block"
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
-          SIGN IN
-        </NavLink>
-      </li>
-      <li className="menuHeight">
-        <NavLink
-          to="/sign-up"
-          className="customFont menuHeight block"
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
-          SIGN UP
-        </NavLink>
-      </li>
+      {!user ? (
+        <>
+          <li className="menuHeight">
+            <NavLink
+              to="/sign-in"
+              className="customFont menuHeight block"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              SIGN IN
+            </NavLink>
+          </li>
+          <li className="menuHeight">
+            <NavLink
+              to="/sign-up"
+              className="customFont menuHeight block"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              SIGN UP
+            </NavLink>
+          </li>
+        </>
+      ) : (
+        <li>
+          <button
+            onClick={handleLogout}
+            className="customFont  block py-2 px-6 bg-[#5870f9] text-white rounded "
+          >
+            Logout
+          </button>
+        </li>
+      )}
     </>
   );
 

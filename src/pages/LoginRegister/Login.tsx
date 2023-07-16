@@ -79,10 +79,11 @@ const Login = () => {
             placeholder="Enter Password"
           />
           <button
-            type="submit"
             className="w-full py-3 rounded text-xl font-serif bg-[#5870f9] text-white mt-5"
+            type="submit"
+            disabled={isLoading}
           >
-            Login
+            {isLoading ? 'Loading...' : 'Login'}
           </button>
           <p className="font-serif mt-4 ml-2">
             Don't Have an Account?{' '}

@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { createContext, useState } from 'react';
 import Cookies from 'js-cookie';
 import CryptoJS from 'crypto-js';
 
