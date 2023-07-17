@@ -76,6 +76,15 @@ const Navbar = () => {
         <>
           <li className="menuHeight">
             <NavLink
+              to="/my-wishlist"
+              className="customFont menuHeight block"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              MY WISHLIST
+            </NavLink>
+          </li>
+          <li className="menuHeight">
+            <NavLink
               to="/add-new-book"
               className="customFont menuHeight block"
               style={({ isActive }) => (isActive ? activeStyle : undefined)}

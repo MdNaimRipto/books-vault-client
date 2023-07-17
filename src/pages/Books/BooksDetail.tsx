@@ -17,21 +17,22 @@ import { AuthContext } from '../../Context/UserContext';
 import ScrollToTop from '../../components/ScrollToTop';
 
 const BooksDetail = () => {
+  // Getting User from Context
   const authContextValue = useContext(AuthContext);
-
   if (!authContextValue) {
     // Handle the case when the context value is null
     throw new Error('AuthContext value is not available');
   }
-
   const { user } = authContextValue;
 
+  const navigate = useNavigate();
+
+  // Getting Books ID and Getting Book by ID:
   const { id } = useParams();
   const { data, isLoading } = useGetBooksByIDQuery(id);
 
-  const navigate = useNavigate();
+  // Delete Book:
   const [deleteOptions] = useDeleteBookMutation();
-
   const handleDelete = (book: IBooks) => {
     swal({
       title: 'Are you sure?',
@@ -58,9 +59,9 @@ const BooksDetail = () => {
     });
   };
 
+  // Review and Add Review Functions:
   const [reviews, addReviews] = useState(true);
   const [addReview, addAddReview] = useState(false);
-
   const handleReviews = () => {
     addReviews(true);
     addAddReview(false);
@@ -69,6 +70,7 @@ const BooksDetail = () => {
     addAddReview(true);
     addReviews(false);
   };
+
   if (isLoading) {
     return <Loader />;
   } else {
@@ -117,10 +119,10 @@ const BooksDetail = () => {
             <p className="text-sm my-3">{details.description}</p>
             <div className="flex items-center gap-3 font-serif">
               <Button title="Buy Now" />
-              <div className="flex items-center gap-1">
+              <button className="flex items-center gap-1">
                 <p>Add to Wishlist</p>
                 <MdAddCircleOutline className="text-2xl" />
-              </div>
+              </button>
               {user?._id === details?.sellerID && (
                 <>
                   <Link to={`/edit-book/${details._id}`}>
@@ -158,7 +160,12 @@ const BooksDetail = () => {
           </div>
           <div>
             {reviews && !addReview && <Reviews reviews={details.reviews} />}
-            {addReview && !reviews && <AddReview />}
+            {addReview && !reviews && (
+              <AddReview
+                bookID={id as string}
+                sellerID={details.sellerID as string}
+              />
+            )}
           </div>
         </div>
       </div>

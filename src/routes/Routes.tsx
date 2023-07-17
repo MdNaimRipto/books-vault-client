@@ -8,6 +8,7 @@ import AllBooksLayout from '../layouts/AllBooksLayout';
 import AddNewBook from '../pages/Books/AddNewBook';
 import EditBook from '../pages/Books/EditBook';
 import PrivateRoute from './PrivateRoute';
+import MyWishList from '../pages/MyWishList/MyWishlist';
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <EditBook />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/my-wishlist',
+        element: (
+          <PrivateRoute>
+            <MyWishList />
           </PrivateRoute>
         ),
       },
