@@ -7,14 +7,24 @@ import { IBooks } from '../../types/BookTypes';
 import Rating from '../../components/Rating';
 import Button from '../../components/Button';
 import { MdAddCircleOutline } from 'react-icons/md';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import '../../styles/bookDetails.css';
 import Reviews from '../../components/Reviews';
 import AddReview from '../../components/AddReview';
 import Loader from '../../components/Loader';
 import swal from 'sweetalert';
+import { AuthContext } from '../../Context/UserContext';
 
 const BooksDetail = () => {
+  const authContextValue = useContext(AuthContext);
+
+  if (!authContextValue) {
+    // Handle the case when the context value is null
+    throw new Error('AuthContext value is not available');
+  }
+
+  const { user } = authContextValue;
+
   const { id } = useParams();
   const { data, isLoading } = useGetBooksByIDQuery(id);
 
@@ -109,17 +119,21 @@ const BooksDetail = () => {
                 <p>Add to Wishlist</p>
                 <MdAddCircleOutline className="text-2xl" />
               </div>
-              <button className="py-2 px-4 ml-4 border border-black rounded font-semibold font-serif">
-                Edit Book
-              </button>
-              <button
-                onClick={() => {
-                  handleDelete(details);
-                }}
-                className="py-2 px-4 bg-red-500 text-white border border-red-500 rounded font-semibold font-serif"
-              >
-                Delete Book
-              </button>
+              {user?._id === details?.sellerID && (
+                <>
+                  <button className="py-2 px-4 ml-4 border border-black rounded font-semibold font-serif">
+                    Edit Book
+                  </button>
+                  <button
+                    onClick={() => {
+                      handleDelete(details);
+                    }}
+                    className="py-2 px-4 bg-red-500 text-white border border-red-500 rounded font-semibold font-serif"
+                  >
+                    Delete Book
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>

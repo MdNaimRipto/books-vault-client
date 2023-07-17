@@ -3,6 +3,7 @@ import BookCard from '../../components/BookCard';
 import { useGetAllBooksQuery } from '../../redux/features/books/booksApi';
 import { IBooks } from '../../types/BookTypes';
 import Loader from '../../components/Loader';
+import ScrollToTop from '../../components/ScrollToTop';
 
 interface IYearGenreType {
   searchTerm: string;
@@ -33,6 +34,7 @@ const AllBooks: React.FC<IYearGenreType> = ({
     const books = data.data;
     return (
       <div>
+        <ScrollToTop />
         <div className="flex items-center justify-between mb-10">
           <h2 className="text-4xl font-serif">All Books List</h2>
           <button

@@ -75,6 +75,7 @@ const AddNewBook = () => {
           toast.success('Book Created Successfully');
           form.reset();
           setIsLoading(false);
+          window.location.reload();
         } else if (!data.success) {
           console.log(data);
           toast.error(data.message);
