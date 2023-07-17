@@ -11,9 +11,11 @@ const TopBooks = () => {
   } else {
     const topBooks = data.data;
     return (
-      <div>
-        <h2 className="text-4xl my-12 font-serif">Top Ten Best Seller Books</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
+      <div className="px-4 lg:px-0">
+        <h2 className="text-2xl md:text-4xl my-12 font-serif">
+          Top Ten Best Seller Books
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
           {topBooks.map((book: IBooks) => (
             <BookCard book={book} key={book._id} />
           ))}

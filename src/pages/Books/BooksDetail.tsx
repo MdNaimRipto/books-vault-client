@@ -78,8 +78,8 @@ const BooksDetail = () => {
     return (
       <div>
         <ScrollToTop />
-        <div className="flex items-center gap-16 px-10 py-12">
-          <div className="w-[30%] bg-gray-200 mx-auto">
+        <div className="flex flex-col lg:flex-row items-center gap-16 px-4 lg:px-10 py-12">
+          <div className="w-full lg:w-[30%] bg-gray-200 mx-auto">
             <img
               src={details.img}
               alt="Book Image"
@@ -87,9 +87,9 @@ const BooksDetail = () => {
               style={{ height: undefined, aspectRatio: 0.7 }}
             />
           </div>
-          <div className="w-[70%]">
-            <h2 className="text-3xl font-serif">{details.title}</h2>
-            <div className="flex items-center gap-3 mt-4 text-lg font-serif">
+          <div className="w-full lg:w-[70%]">
+            <h2 className="text-2xl lg:text-3xl font-serif">{details.title}</h2>
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-5 md:gap-3 mt-4 text-lg font-serif">
               <p>Author: {details.author}</p>
               <Rating rating={4.5} />
               <p>
@@ -99,7 +99,7 @@ const BooksDetail = () => {
                 </span>
               </p>
             </div>
-            <div className="flex items-center gap-3 mt-5">
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-5 md:gap-3 mt-5">
               <p className="font-serif">
                 Price: <span className="text-green-600">${details.price}</span>
               </p>
@@ -117,7 +117,7 @@ const BooksDetail = () => {
             </div>
 
             <p className="text-sm my-3">{details.description}</p>
-            <div className="flex items-center gap-3 font-serif">
+            <div className="flex flex-wrap items-center gap-4 md:gap-3 font-serif">
               <Button title="Buy Now" />
               <button className="flex items-center gap-1">
                 <p>Add to Wishlist</p>
@@ -143,7 +143,7 @@ const BooksDetail = () => {
             </div>
           </div>
         </div>
-        <div className="px-10 pb-12">
+        <div className="px-4 lg:px-10 pb-12">
           <div className="flex gap-6">
             <button
               className={reviews ? 'selectedBtn' : 'unselectedBtn'}

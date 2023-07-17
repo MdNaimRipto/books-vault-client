@@ -135,7 +135,7 @@ const Navbar = () => {
       </div>
       {/*  */}
       <div
-        className={`absolute w-full lg:h-full lg:w-[56%] px-4 md:px-12 bg-white lg:static top-24 duration-300 lg:flex lg:justify-end ${
+        className={`absolute w-full h-full lg:w-[85%] xl:w-[56%] px-4 md:px-12 bg-white lg:static top-24 duration-300 lg:flex lg:justify-end ${
           click ? `left-0 duration-300` : `left-[-1000px] duration-500`
         }`}
       >

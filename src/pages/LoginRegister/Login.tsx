@@ -60,8 +60,8 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-full mt-12">
-      <div className="w-[30%]">
+    <div className="flex items-center justify-center h-full mt-12 px-4 lg:px-0">
+      <div className="w-full md:w-[60%] lg:w-[40%] xl:w-[30%]">
         <h2 className="text-3xl text-center font-serif">Login</h2>
         <form onSubmit={handleLogin}>
           <label className="w-full mb-2 block mt-2 font-serif">Email</label>

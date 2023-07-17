@@ -9,7 +9,7 @@ const Reviews: React.FC<ReviewsProps> = ({ reviews }) => {
   return (
     <div className="mt-8">
       {!reviews.length ? (
-        <div className="flex items-center justify-center h-[160px] text-3xl font-serif">
+        <div className="flex items-center justify-center h-[160px] text-2xl md:text-3xl font-serif">
           <h2>No Reviews Found!</h2>
         </div>
       ) : (

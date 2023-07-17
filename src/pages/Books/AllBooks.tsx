@@ -48,7 +48,7 @@ const AllBooks: React.FC<IYearGenreType> = ({
       <div>
         <ScrollToTop />
         <div className="flex items-center justify-between mb-10">
-          <h2 className="text-4xl font-serif">All Books List</h2>
+          <h2 className="text-sm md:text-4xl font-serif">All Books List</h2>
           {user ? (
             <Link to="/add-new-book">
               <button
@@ -68,7 +68,7 @@ const AllBooks: React.FC<IYearGenreType> = ({
             </button>
           )}
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-8">
           {books.map((book: IBooks) => (
             <BookCard book={book} key={book._id} />
           ))}

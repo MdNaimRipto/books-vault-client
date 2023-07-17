@@ -78,9 +78,11 @@ const AddNewBook = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-full mt-12 mb-10">
-      <div className="w-[60%]">
-        <h2 className="text-3xl text-start font-serif">Add New Book</h2>
+    <div className="flex items-center justify-center h-full mt-12 mb-10 px-4 lg:px-0">
+      <div className="w-full lg:w-[60%]">
+        <h2 className="text-center md:text-start text-2xl md:text-3xl font-serif">
+          Add New Book
+        </h2>
         <form onSubmit={handleUploadBook}>
           <label className="w-full mb-2 block mt-2 font-serif">Title</label>
           <input

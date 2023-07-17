@@ -14,8 +14,8 @@ const AllBooksLayout = () => {
     <>
       <div className="container mx-auto px-0 md:px-4 lg:px-8 xl:px-4">
         <Navbar />
-        <div className="grid grid-cols-8 gap-6 px-5 my-12">
-          <nav className="col-span-2">
+        <div className="grid grid-cols-1 lg:grid-cols-8 gap-6 px-5 my-12">
+          <nav className="lg:col-span-2">
             <input
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search Books"
@@ -30,7 +30,7 @@ const AllBooksLayout = () => {
               setSelectedYear={setSelectedYear}
             />
           </nav>
-          <div className="col-span-6">
+          <div className="lg:col-span-6">
             <AllBooks
               searchTerm={searchTerm}
               selectedYear={selectedYear}
