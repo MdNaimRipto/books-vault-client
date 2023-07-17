@@ -17,7 +17,7 @@ const booksApi = api.injectEndpoints({
         }
         return `/books/getAllBooks?${queryParameters.toString()}`;
       },
-      providesTags: ['deleteBook'],
+      providesTags: ['deleteBook', 'updateList'],
     }),
     getTopBooks: builder.query({
       query: () => '/books/getTopBooks',
@@ -26,6 +26,14 @@ const booksApi = api.injectEndpoints({
       query: (id) => ({
         url: `/books/getBooksByID/${id}`,
       }),
+    }),
+    createBook: builder.mutation({
+      query: ({ data }) => ({
+        url: `/books/createNewBook`,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['updateList'],
     }),
     deleteBook: builder.mutation({
       query: ({ id, data }) => ({
@@ -42,5 +50,6 @@ export const {
   useGetAllBooksQuery,
   useGetTopBooksQuery,
   useGetBooksByIDQuery,
+  useCreateBookMutation,
   useDeleteBookMutation,
 } = booksApi;

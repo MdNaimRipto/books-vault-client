@@ -2,6 +2,7 @@ import { FormEvent, useContext, useState } from 'react';
 import { AuthContext } from '../../Context/UserContext';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { useCreateBookMutation } from '../../redux/features/books/booksApi';
 
 const AddNewBook = () => {
   const authContextValue = useContext(AuthContext);
@@ -12,6 +13,8 @@ const AddNewBook = () => {
   }
 
   const { user } = authContextValue;
+
+  const [booksData] = useCreateBookMutation();
 
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -42,46 +45,36 @@ const AddNewBook = () => {
 
     const publishedYear = new Date(formattedDate).getFullYear();
 
-    const data = {
-      title,
-      author,
-      genre,
-      publicationDate: formattedDate,
-      publicationYear: publishedYear.toString(),
-      description,
-      price,
-      quantity,
-      img,
-      totalSale: 0,
-      inStock: true,
-      rating: 0,
-      allRating: [0],
-      reviews: [],
-      sellerID: `${user._id}` as string,
-    };
-
-    fetch('http://localhost:5875/v1.0.0/books/createNewBook', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
+    const options = {
+      data: {
+        title,
+        author,
+        genre,
+        publicationDate: formattedDate,
+        publicationYear: publishedYear.toString(),
+        description,
+        price,
+        quantity,
+        img,
+        totalSale: 0,
+        inStock: true,
+        rating: 0,
+        allRating: [0],
+        reviews: [],
+        sellerID: `${user._id}` as string,
       },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          console.log(data);
-          navigate('/all-books');
-          toast.success('Book Created Successfully');
-          form.reset();
-          setIsLoading(false);
-          window.location.reload();
-        } else if (!data.success) {
-          console.log(data);
-          toast.error(data.message);
-          setIsLoading(false);
-        }
-      });
+    };
+    try {
+      await booksData(options).unwrap();
+      form.reset();
+      toast.success('Book Created Successfully');
+      navigate('/all-books');
+      setIsLoading(false);
+    } catch (error) {
+      toast.error((error as { data?: { message: string } })?.data?.message);
+      form.reset();
+      setIsLoading(false);
+    }
   };
 
   return (
