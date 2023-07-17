@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useGetAllBooksQuery } from '../redux/features/books/booksApi';
 import { IBooks } from '../types/BookTypes';
 import { IPublicationYearItems } from '../types/CommonTypes';
+import Loader from './Loader';
 
 const PublicationYearSelect: React.FC<IPublicationYearItems> = ({
   selectedYear,
@@ -24,7 +25,7 @@ const PublicationYearSelect: React.FC<IPublicationYearItems> = ({
   }, [yearsCollection?.data]);
 
   if (isLoading) {
-    return <h2>Loading</h2>;
+    return <Loader />;
   } else {
     const handleYearChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
       setSelectedYear(event.target.value);

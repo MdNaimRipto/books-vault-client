@@ -2,6 +2,7 @@ import { MdOutlineAddCircleOutline } from 'react-icons/md';
 import BookCard from '../../components/BookCard';
 import { useGetAllBooksQuery } from '../../redux/features/books/booksApi';
 import { IBooks } from '../../types/BookTypes';
+import Loader from '../../components/Loader';
 
 interface IYearGenreType {
   searchTerm: string;
@@ -23,7 +24,7 @@ const AllBooks: React.FC<IYearGenreType> = ({
     return <p>No Books Found</p>;
   }
   if (isLoading) {
-    return <h2>Loading</h2>;
+    return <Loader />;
   } else {
     const books = data.data;
     return (

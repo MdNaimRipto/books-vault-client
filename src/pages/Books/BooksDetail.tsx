@@ -8,6 +8,7 @@ import { useState } from 'react';
 import '../../styles/bookDetails.css';
 import Reviews from '../../components/Reviews';
 import AddReview from '../../components/AddReview';
+import Loader from '../../components/Loader';
 
 const BooksDetail = () => {
   const { id } = useParams();
@@ -25,7 +26,7 @@ const BooksDetail = () => {
     addReviews(false);
   };
   if (isLoading) {
-    return <h2>Loading</h2>;
+    return <Loader />;
   } else {
     const details = data.data as IBooks;
     console.log(details);

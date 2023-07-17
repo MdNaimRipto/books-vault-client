@@ -1,12 +1,13 @@
 import { useGetTopBooksQuery } from '../../redux/features/books/booksApi';
 import { IBooks } from '../../types/BookTypes';
 import BookCard from '../../components/BookCard';
+import Loader from '../../components/Loader';
 
 const TopBooks = () => {
   const { data, isLoading } = useGetTopBooksQuery(undefined);
 
   if (isLoading) {
-    return <h2>Loading</h2>;
+    return <Loader />;
   } else {
     const topBooks = data.data;
     return (

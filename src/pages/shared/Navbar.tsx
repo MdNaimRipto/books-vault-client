@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import logo from '../assets/Books Vault.png';
-import '../styles/navbar.css';
+import logo from '../../assets/Books Vault.png';
+import '../../styles/navbar.css';
 import { FaBars } from 'react-icons/fa';
 import { GrClose } from 'react-icons/gr';
 import Cookies from 'js-cookie';
-import { AuthContext } from '../Context/UserContext';
+import { AuthContext } from '../../Context/UserContext';
 import { toast } from 'react-toastify';
 
 const Navbar = () => {
@@ -73,14 +73,25 @@ const Navbar = () => {
           </li>
         </>
       ) : (
-        <li>
-          <button
-            onClick={handleLogout}
-            className="customFont  block py-2 px-6 bg-[#5870f9] text-white rounded "
-          >
-            Logout
-          </button>
-        </li>
+        <>
+          <li className="menuHeight">
+            <NavLink
+              to="/add-new-book"
+              className="customFont menuHeight block"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              ADD NEW BOOK
+            </NavLink>
+          </li>
+          <li>
+            <button
+              onClick={handleLogout}
+              className="customFont  block py-2 px-6 bg-[#5870f9] text-white rounded font-thin"
+            >
+              LOGOUT
+            </button>
+          </li>
+        </>
       )}
     </>
   );

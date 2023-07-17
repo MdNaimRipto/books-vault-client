@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useGetAllBooksQuery } from '../redux/features/books/booksApi';
 import { IBooks } from '../types/BookTypes';
 import { IGenreListItems } from '../types/CommonTypes';
+import Loader from './Loader';
 
 const GenreList: React.FC<IGenreListItems> = ({
   selectedGenre,
@@ -22,7 +23,7 @@ const GenreList: React.FC<IGenreListItems> = ({
   }, [booksCollection?.data]);
 
   if (isLoading) {
-    return <h2>Loading</h2>;
+    return <Loader />;
   } else {
     const handleGenreChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
       setSelectedGenre(event.target.value);
