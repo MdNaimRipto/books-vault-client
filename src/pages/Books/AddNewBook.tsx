@@ -78,7 +78,7 @@ const AddNewBook = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-full mt-12">
+    <div className="flex items-center justify-center h-full mt-12 mb-10">
       <div className="w-[60%]">
         <h2 className="text-3xl text-start font-serif">Add New Book</h2>
         <form onSubmit={handleUploadBook}>
@@ -165,7 +165,7 @@ const AddNewBook = () => {
             className="w-full py-3 border border-gray-300 rounded px-2"
             name="img"
             type="text"
-            placeholder="Enter Email"
+            placeholder="Enter Image"
           />
           <button
             className="w-full py-3 rounded text-xl font-serif bg-[#5870f9] text-white mt-5"

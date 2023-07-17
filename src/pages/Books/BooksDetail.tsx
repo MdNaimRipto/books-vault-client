@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
   useDeleteBookMutation,
   useGetBooksByIDQuery,
@@ -14,6 +14,7 @@ import AddReview from '../../components/AddReview';
 import Loader from '../../components/Loader';
 import swal from 'sweetalert';
 import { AuthContext } from '../../Context/UserContext';
+import ScrollToTop from '../../components/ScrollToTop';
 
 const BooksDetail = () => {
   const authContextValue = useContext(AuthContext);
@@ -74,6 +75,7 @@ const BooksDetail = () => {
     const details = data.data as IBooks;
     return (
       <div>
+        <ScrollToTop />
         <div className="flex items-center gap-16 px-10 py-12">
           <div className="w-[30%] bg-gray-200 mx-auto">
             <img
@@ -121,9 +123,11 @@ const BooksDetail = () => {
               </div>
               {user?._id === details?.sellerID && (
                 <>
-                  <button className="py-2 px-4 ml-4 border border-black rounded font-semibold font-serif">
-                    Edit Book
-                  </button>
+                  <Link to={`/edit-book/${details._id}`}>
+                    <button className="py-2 px-4 ml-4 border border-black rounded font-semibold font-serif">
+                      Edit Book
+                    </button>
+                  </Link>
                   <button
                     onClick={() => {
                       handleDelete(details);
