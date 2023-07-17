@@ -21,7 +21,11 @@ const AllBooks: React.FC<IYearGenreType> = ({
   });
 
   if (isError) {
-    return <p>No Books Found</p>;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-3xl font-serif font-medium">No Books Found</p>
+      </div>
+    );
   }
   if (isLoading) {
     return <Loader />;

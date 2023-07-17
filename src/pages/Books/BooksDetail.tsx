@@ -1,5 +1,8 @@
-import { useParams } from 'react-router-dom';
-import { useGetBooksByIDQuery } from '../../redux/features/books/booksApi';
+import { useNavigate, useParams } from 'react-router-dom';
+import {
+  useDeleteBookMutation,
+  useGetBooksByIDQuery,
+} from '../../redux/features/books/booksApi';
 import { IBooks } from '../../types/BookTypes';
 import Rating from '../../components/Rating';
 import Button from '../../components/Button';
@@ -9,10 +12,40 @@ import '../../styles/bookDetails.css';
 import Reviews from '../../components/Reviews';
 import AddReview from '../../components/AddReview';
 import Loader from '../../components/Loader';
+import swal from 'sweetalert';
 
 const BooksDetail = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetBooksByIDQuery(id);
+
+  const navigate = useNavigate();
+  const [deleteOptions] = useDeleteBookMutation();
+
+  const handleDelete = (book: IBooks) => {
+    swal({
+      title: 'Are you sure?',
+      text: `Once deleted, It will be deleted forever!`,
+      icon: 'warning',
+      buttons: ['Cancel', 'Delete'],
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        const options = {
+          id: id,
+          data: {
+            sellerID: book?.sellerID,
+          },
+        };
+        deleteOptions(options);
+        navigate('/all-books');
+        swal(`Book has been deleted`, {
+          icon: 'success',
+        });
+      } else {
+        swal(`Book has not been deleted`);
+      }
+    });
+  };
 
   const [reviews, addReviews] = useState(true);
   const [addReview, addAddReview] = useState(false);
@@ -29,7 +62,6 @@ const BooksDetail = () => {
     return <Loader />;
   } else {
     const details = data.data as IBooks;
-    console.log(details);
     return (
       <div>
         <div className="flex items-center gap-16 px-10 py-12">
@@ -80,7 +112,12 @@ const BooksDetail = () => {
               <button className="py-2 px-4 ml-4 border border-black rounded font-semibold font-serif">
                 Edit Book
               </button>
-              <button className="py-2 px-4 bg-red-500 text-white border border-red-500 rounded font-semibold font-serif">
+              <button
+                onClick={() => {
+                  handleDelete(details);
+                }}
+                className="py-2 px-4 bg-red-500 text-white border border-red-500 rounded font-semibold font-serif"
+              >
                 Delete Book
               </button>
             </div>
