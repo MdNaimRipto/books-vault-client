@@ -86,6 +86,7 @@ const AddNewBook = () => {
         <form onSubmit={handleUploadBook}>
           <label className="w-full mb-2 block mt-2 font-serif">Title</label>
           <input
+            required
             className="w-full py-3 border border-gray-300 rounded px-2"
             name="title"
             type="text"
@@ -98,6 +99,7 @@ const AddNewBook = () => {
                 Author
               </label>
               <input
+                required
                 className="w-full py-3 border border-gray-300 rounded px-2"
                 name="author"
                 type="text"
@@ -108,6 +110,7 @@ const AddNewBook = () => {
             <div className="w-1/2">
               <label className="w-full mb-2 block mt-2 font-serif">Genre</label>
               <input
+                required
                 className="w-full py-3 border border-gray-300 rounded px-2"
                 name="genre"
                 type="text"
@@ -120,6 +123,7 @@ const AddNewBook = () => {
             <div className="w-1/2">
               <label className="w-full mb-2 block mt-2 font-serif">Price</label>
               <input
+                required
                 className="w-full py-3 border border-gray-300 rounded px-2"
                 name="price"
                 type="number"
@@ -132,6 +136,7 @@ const AddNewBook = () => {
                 Quantity
               </label>
               <input
+                required
                 className="w-full py-3 border border-gray-300 rounded px-2"
                 name="quantity"
                 type="number"
@@ -144,6 +149,7 @@ const AddNewBook = () => {
             Publication Date
           </label>
           <input
+            required
             className="w-full py-3 border border-gray-300 rounded px-2"
             name="publicationDate"
             type="date"
@@ -164,6 +170,7 @@ const AddNewBook = () => {
             Books Image
           </label>
           <input
+            required
             className="w-full py-3 border border-gray-300 rounded px-2"
             name="img"
             type="text"

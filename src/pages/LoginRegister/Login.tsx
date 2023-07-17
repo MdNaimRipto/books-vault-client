@@ -30,7 +30,7 @@ const Login = () => {
       email,
       password,
     };
-    fetch(`http://localhost:5875/v1.0.0/users/userLogin`, {
+    fetch(`https://books-vault-server.vercel.app/v1.0.0/users/userLogin`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -66,6 +66,7 @@ const Login = () => {
         <form onSubmit={handleLogin}>
           <label className="w-full mb-2 block mt-2 font-serif">Email</label>
           <input
+            required
             className="w-full py-3 border border-gray-300 rounded px-2"
             name="email"
             type="email"
@@ -73,6 +74,7 @@ const Login = () => {
           />
           <label className="w-full mb-2 block mt-2 font-serif">Password</label>
           <input
+            required
             className="w-full py-3 border border-gray-300 rounded px-2"
             name="password"
             type="password"

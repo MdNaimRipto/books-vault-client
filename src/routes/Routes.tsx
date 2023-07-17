@@ -9,11 +9,13 @@ import AddNewBook from '../pages/Books/AddNewBook';
 import EditBook from '../pages/Books/EditBook';
 import PrivateRoute from './PrivateRoute';
 import MyWishList from '../pages/MyWishList/MyWishlist';
+import NotFound from '../components/NotFound';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Main />,
+    errorElement: <NotFound />,
     children: [
       {
         path: '/',
@@ -60,5 +62,6 @@ export const router = createBrowserRouter([
   {
     path: '/all-books',
     element: <AllBooksLayout />,
+    errorElement: <NotFound />,
   },
 ]);

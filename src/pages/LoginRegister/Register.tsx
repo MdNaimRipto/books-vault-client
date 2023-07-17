@@ -36,7 +36,7 @@ const Register = () => {
       email,
       password,
     };
-    fetch(`http://localhost:5875/v1.0.0/users/createUser`, {
+    fetch(`https://books-vault-server.vercel.app/v1.0.0/users/createUser`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -67,13 +67,14 @@ const Register = () => {
 
   return (
     <div className="flex items-center justify-center h-full mt-12 px-4 lg:px-0">
-      <div className="w-full md:w-[60%] lg:w-[40%] xl:w-[30%]">
+      <div className="w-full md:w-[60%] lg:w-[40%]">
         <h2 className="text-3xl text-center font-serif">Register</h2>
         <form onSubmit={handleLogin}>
           <label className="w-full mb-2 block mt-2 font-serif">
             First Name
           </label>
           <input
+            required
             className="w-full py-3 border border-gray-300 rounded px-2"
             name="firstName"
             type="firstName"
@@ -81,6 +82,7 @@ const Register = () => {
           />
           <label className="w-full mb-2 block mt-2 font-serif">Last Name</label>
           <input
+            required
             className="w-full py-3 border border-gray-300 rounded px-2"
             name="lastName"
             type="lastName"
@@ -88,6 +90,7 @@ const Register = () => {
           />
           <label className="w-full mb-2 block mt-2 font-serif">Email</label>
           <input
+            required
             className="w-full py-3 border border-gray-300 rounded px-2"
             name="email"
             type="email"
@@ -95,6 +98,7 @@ const Register = () => {
           />
           <label className="w-full mb-2 block mt-2 font-serif">Password</label>
           <input
+            required
             className="w-full py-3 border border-gray-300 rounded px-2"
             name="password"
             type="password"
